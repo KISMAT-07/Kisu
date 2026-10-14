@@ -1,0 +1,176 @@
+# Kisu Project With CMS - Adapted Plan
+
+Source material: `Kisu Project with CMS - Python.pdf`.
+
+The PDF is treated as mentor-provided project requirements. Its examples mention Express, Flask, MongoDB, Supabase, and multer in places. For this project, we will use the user's chosen stack:
+
+- React for frontend and CMS/admin UI
+- FastAPI for backend CMS APIs
+- PostgreSQL for the database
+
+## Architecture
+
+The project contains:
+
+- Portfolio frontend that fetches dynamic content from the CMS backend.
+- FastAPI backend that provides authentication, content APIs, upload APIs, and contact form APIs.
+- Custom CMS/admin panel built from scratch.
+- PostgreSQL database storing all content and messages.
+
+## Content Areas
+
+- Home
+- About
+- Projects
+- Skills
+- Experience / timeline
+- Blog
+- Contact
+- Testimonials
+- Services
+
+## Backend APIs
+
+Authentication:
+
+- `POST /auth/login`
+- `POST /auth/refresh`
+
+Content:
+
+- `/about` with `GET`, `PUT`
+- `/skills` with `GET`, `POST`, `PUT`, `DELETE`
+- `/projects` with `GET`, `POST`, `PUT`, `DELETE`
+- `/blogs` with `GET`, `POST`, `PUT`, `DELETE`
+- `/experience` CRUD
+- `/testimonials` CRUD
+- `/services` CRUD
+
+Media:
+
+- `POST /upload/image`
+
+Contact:
+
+- `POST /contact`
+
+## Database Tables
+
+- `users`
+- `about`
+- `skills`
+- `projects`
+- `blogs`
+- `experience`
+- `testimonials`
+- `services`
+- `messages`
+- `media`
+
+## Two-Week Plan
+
+### Day 1 - Backend + Database Setup
+
+- Initialize backend project.
+- Configure FastAPI.
+- Configure PostgreSQL connection.
+- Create basic backend folder structure.
+- Add health and database readiness endpoints.
+
+### Day 2 - CMS Authentication System
+
+- Create admin user model.
+- Implement JWT login API.
+- Add middleware/dependencies for protected routes.
+
+Status: completed with FastAPI auth endpoints, JWT access/refresh tokens, password hashing helpers, admin user model, and protected current-user dependency.
+
+### Day 3 - CMS Content Models
+
+- Create models for About, Skills, Projects, Blogs, Experience, Testimonials, and Services.
+- Build initial CRUD APIs.
+
+Status: completed with SQLAlchemy models, Pydantic schemas, and FastAPI CRUD endpoints. Public `GET` routes are available for the portfolio frontend, while write/delete routes are protected for the CMS admin.
+
+### Day 4 - File Upload System
+
+- Create file upload service for images.
+- Add upload endpoint.
+- Store media metadata in PostgreSQL.
+
+Status: completed with protected image uploads, local static file serving, file-size and MIME validation, and a PostgreSQL `media` metadata model.
+
+### Day 5 - Admin Panel Setup
+
+- Initialize React admin panel.
+- Build login page.
+- Build dashboard.
+
+Status: completed with a Vite React admin panel, FastAPI login integration, token persistence, protected current-user loading, logout, and dashboard content navigation.
+
+### Day 6 - CMS CRUD Screens
+
+- Add admin pages for About, Skills, and Projects.
+
+Status: completed with authenticated React editors for About, Skills, and Projects. About supports upsert; Skills and Projects support list, create, update, and delete workflows.
+
+### Day 7 - Remaining CMS Pages
+
+- Add admin pages for Blogs, Testimonials, Experience, and Services.
+- Improve CMS UI.
+
+Status: completed with authenticated React CRUD editors for Blogs, Testimonials, Experience, and Services, including publish state, dates, highlights, tags, and list management.
+
+### Day 8 - Portfolio Frontend Setup
+
+- Initialize React portfolio frontend.
+- Set up Tailwind CSS.
+- Build layout and home page.
+
+Status: completed with a separate Vite React portfolio app, Tailwind CSS integration, responsive home layout, selected work, about, skills, and contact sections.
+
+### Day 9 - Fetch Content From CMS
+
+- Connect frontend to backend APIs.
+- Display About, Skills, and Projects dynamically.
+
+Status: completed with public portfolio API loading for About, Skills, and Projects, plus loading state and representative fallback content when the CMS is unavailable.
+
+### Day 10 - Additional Sections
+
+- Build Blog page.
+- Build Testimonials section.
+- Build Experience timeline.
+
+Status: completed with CMS-backed Blog, Testimonials, and Experience sections on the public portfolio, including fallback content and responsive layouts.
+
+### Day 11 - Contact Form
+
+- Build contact form UI.
+- Connect contact form to `POST /contact`.
+
+Status: completed with a PostgreSQL `messages` model, public FastAPI `POST /api/v1/contact` endpoint, and a responsive portfolio contact form with validation and success/error states.
+
+### Day 12 - Backend + CMS Deployment
+
+- Prepare backend for deployment.
+- Configure environment variables.
+- Deploy backend and admin panel.
+
+Status: completed with production Dockerfiles for FastAPI and the React CMS, Nginx SPA serving, PostgreSQL health-checked Compose orchestration, persistent uploads, and deployment environment documentation. Actual cloud deployment remains provider-specific.
+
+### Day 13 - Portfolio Frontend Deployment
+
+- Deploy portfolio frontend.
+- Configure production API URLs and domain.
+
+Status: completed with a production portfolio Dockerfile, Nginx SPA serving, Compose integration, persistent production API URL configuration, and public-site CORS defaults. Actual cloud deployment remains provider-specific.
+
+### Day 14 - Final Testing & Optimization
+
+- Validate APIs.
+- Optimize images.
+- Run security checks.
+- Polish UI and fix bugs.
+
+Status: completed with backend pytest coverage, API-surface checks, Ruff validation, backend compilation, both React production builds, deployment configuration review, and dependency cleanup.

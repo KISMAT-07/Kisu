@@ -1,0 +1,14 @@
+.DS_Store
+Thumbs.db
+__MACOSX/
+**/.venv*/
+**/.tmp/
+**/node_modules/
+**/__pycache__/
+**/*.py[cod]
+**/*.egg-info/
+**/dist/
+**/.env
+**/.env.*
+!**/.env.example
+uploads/
